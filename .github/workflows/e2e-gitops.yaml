@@ -86,7 +86,7 @@ jobs:
  
       - name: Update Deployment YAML
         run: |
-          git pull https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git pull 
           sed -i "s|image: mani1765/gitopsproject:.*$|image: mani1765/gitopsproject:${{ env.VERSION }}|" deployment.yaml
           echo ${{ env.VERSION }} > version.txt
           CURRENT_VERSION=$(cat version.txt)
