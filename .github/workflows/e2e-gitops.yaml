@@ -86,13 +86,13 @@ jobs:
  
       - name: Update Deployment YAML
         run: |
-          git pull
+          git pull https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
           sed -i "s|image: mani1765/gitopsproject:.*$|image: mani1765/gitopsproject:${{ env.VERSION }}|" deployment.yaml
           echo ${{ env.VERSION }} > version.txt
           CURRENT_VERSION=$(cat version.txt)
           git add deployment.yaml version.txt
           git commit -m "Updated deployment yaml and version txt file with supermario image tag to ${CURRENT_VERSION}"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push 
 
 
 
